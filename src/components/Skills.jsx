@@ -5,9 +5,9 @@ import { skills } from "../data/portfolioData";
 const categoryIcons = {
   Languages: "💻",
   Frontend: "🎨",
-  Backend: "⚙️",
+  "Backend & Systems": "⚙️",
   "AI / ML": "🧠",
-  "Tools & Cloud": "☁️",
+  "DevOps & Cloud": "☁️",
   Databases: "🗄️",
 };
 
@@ -49,15 +49,27 @@ export default function Skills() {
                 <h3 className="text-lg font-semibold text-surface-100">{category.category}</h3>
               </div>
               <div className="flex flex-wrap gap-2">
-                {category.items.map((skill) => (
-                  <motion.span
-                    key={skill}
-                    whileHover={{ scale: 1.05, y: -2 }}
-                    className="px-3 py-1.5 text-sm font-medium rounded-lg bg-surface-800/60 text-surface-300 border border-surface-700/50 hover:border-accent-500/30 hover:text-accent-400 hover:bg-accent-500/5 transition-all duration-300 cursor-default"
-                  >
-                    {skill}
-                  </motion.span>
-                ))}
+                {category.items.map((skill) => {
+                  const name = typeof skill === "string" ? skill : skill.name;
+                  const icon = typeof skill === "string" ? null : skill.icon;
+                  return (
+                    <motion.span
+                      key={name}
+                      whileHover={{ scale: 1.05, y: -2 }}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-lg bg-surface-800/60 text-surface-300 border border-surface-700/50 hover:border-accent-500/30 hover:text-accent-400 hover:bg-accent-500/5 transition-all duration-300 cursor-default"
+                    >
+                      {icon && (
+                        <img
+                          src={icon}
+                          alt={name}
+                          className="w-4 h-4 shrink-0"
+                          loading="lazy"
+                        />
+                      )}
+                      {name}
+                    </motion.span>
+                  );
+                })}
               </div>
             </motion.div>
           ))}

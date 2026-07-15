@@ -28,39 +28,71 @@ export const about = {
     "I'm a backend and systems engineer who builds distributed systems, microservice architectures, and AI-powered platforms that actually go to production. Not just another techie — I care about engineering systems that scale, architectures that hold under load, and software that solves real problems.",
     "My work spans event-driven microservices in Java and Go, AI/ML pipelines in Python, and full-stack platforms. Whether it's a video streaming backend inspired by Netflix, a healthcare AI agent, or a developer CLI tool — I love working at every layer of the stack.",
   ],
-  highlights: [
-    { label: "Public Repos", value: "9" },
-    { label: "Technologies", value: "15+" },
-    { label: "Stars Earned", value: "2+" },
-    { label: "Live Projects", value: "1" },
-  ],
+  highlights: [],
 };
 
 // ------- SKILLS -------
 export const skills = [
   {
     category: "Languages",
-    items: ["Java", "Python", "Go", "JavaScript", "Node.js", "SQL"],
+    items: [
+      { name: "Java", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" },
+      { name: "Python", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
+      { name: "Go", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original-wordmark.svg" },
+      { name: "JavaScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
+      { name: "C++", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" },
+      { name: "SQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azuresqldatabase/azuresqldatabase-original.svg" },
+    ],
   },
   {
     category: "Backend & Systems",
-    items: ["Spring Boot", "gRPC", "REST APIs", "Kafka", "Microservices", "FastAPI"],
+    items: [
+      { name: "Spring Boot", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" },
+      { name: "Node.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
+      { name: "gRPC", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/grpc/grpc-original.svg" },
+      { name: "Kafka", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apachekafka/apachekafka-original.svg" },
+      { name: "FastAPI", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" },
+      { name: "REST APIs", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/openapi/openapi-original.svg" },
+    ],
   },
   {
     category: "AI / ML",
-    items: ["PyTorch", "TensorFlow", "OpenCV", "Autoencoders", "Jupyter", "Scikit-learn"],
+    items: [
+      { name: "PyTorch", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" },
+      { name: "TensorFlow", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" },
+      { name: "OpenCV", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opencv/opencv-original.svg" },
+      { name: "Scikit-learn", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scikitlearn/scikitlearn-original.svg" },
+      { name: "Pandas", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" },
+      { name: "NumPy", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" },
+    ],
   },
   {
     category: "Frontend",
-    items: ["React", "Tailwind CSS", "HTML/CSS", "Framer Motion"],
+    items: [
+      { name: "React", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+      { name: "Tailwind CSS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" },
+      { name: "HTML", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
+      { name: "CSS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" },
+    ],
   },
   {
     category: "DevOps & Cloud",
-    items: ["AWS", "Docker", "CI/CD", "FFmpeg", "Git", "Linux"],
+    items: [
+      { name: "AWS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" },
+      { name: "Docker", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
+      { name: "Git", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
+      { name: "Linux", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" },
+      { name: "GitHub Actions", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/githubactions/githubactions-original.svg" },
+    ],
   },
   {
-    category: "Security & Databases",
-    items: ["JWT", "Homomorphic Encryption", "PostgreSQL", "MongoDB", "Redis"],
+    category: "Databases",
+    items: [
+      { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
+      { name: "MongoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
+      { name: "Redis", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg" },
+      { name: "Firebase", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-original.svg" },
+    ],
   },
 ];
 
@@ -75,7 +107,8 @@ export const projects = [
     tags: ["Java", "Python", "Kafka", "gRPC", "JWT", "React", "AWS", "Microservices"],
     github: "https://github.com/SAdreasgamer/MedSync",
     live: "https://medsync.space",
-    image: null,
+    image: "/personal_portfolio/medsync-cover.png",
+    demoVideo: "/personal_portfolio/videos/medsync-demo.mp4",
     featured: true,
   },
   {

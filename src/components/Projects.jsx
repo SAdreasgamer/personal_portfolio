@@ -1,12 +1,11 @@
 import { useState, useRef } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
-import { HiArrowRight, HiChevronDown, HiChevronUp } from "react-icons/hi";
+import { HiPlay } from "react-icons/hi";
 import { projects } from "../data/portfolioData";
+import ProjectModal from "./ProjectModal";
 
-function ProjectCard({ project, index, isInView }) {
-  const [isExpanded, setIsExpanded] = useState(false);
-
+function ProjectCard({ project, index, isInView, onClick }) {
   // Generate a gradient based on index
   const gradients = [
     "from-zinc-800/40 to-zinc-900/60",
@@ -29,7 +28,8 @@ function ProjectCard({ project, index, isInView }) {
       initial={{ opacity: 0, y: 40 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, delay: index * 0.1 }}
-      className={`glass-card rounded-2xl overflow-hidden group ${glow}`}
+      className={`glass-card rounded-2xl overflow-hidden group cursor-pointer ${glow}`}
+      onClick={() => onClick(project)}
     >
       {/* Image area / Gradient placeholder */}
       <div className={`relative h-48 bg-gradient-to-br ${grad} flex items-center justify-center overflow-hidden`}>
@@ -44,7 +44,6 @@ function ProjectCard({ project, index, isInView }) {
             <div className={`text-5xl font-bold ${accent} opacity-30 group-hover:opacity-50 transition-opacity duration-300`}>
               {project.title.charAt(0)}
             </div>
-            <div className="text-xs text-surface-500 mt-2 font-mono">Add project screenshot</div>
           </div>
         )}
 
@@ -55,28 +54,19 @@ function ProjectCard({ project, index, isInView }) {
           </div>
         )}
 
-        {/* Hover overlay with links */}
+        {/* Demo video indicator */}
+        {project.demoVideo && (
+          <div className="absolute bottom-3 left-3 px-2.5 py-1 rounded-full bg-surface-950/70 border border-surface-600/30 text-surface-300 text-xs font-medium backdrop-blur-sm flex items-center gap-1">
+            <HiPlay className="w-3 h-3" />
+            Demo
+          </div>
+        )}
+
+        {/* Hover overlay */}
         <div className="absolute inset-0 bg-surface-950/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
-          <a
-            href={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-3 rounded-xl bg-surface-800/80 border border-surface-600 text-surface-100 hover:bg-accent-600 hover:border-accent-500 transition-all duration-300"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <FaGithub className="w-5 h-5" />
-          </a>
-          {project.live && (
-            <a
-              href={project.live}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 rounded-xl bg-surface-800/80 border border-surface-600 text-surface-100 hover:bg-accent-600 hover:border-accent-500 transition-all duration-300"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <FaExternalLinkAlt className="w-4 h-4" />
-            </a>
-          )}
+          <div className="p-3 rounded-xl bg-surface-800/80 border border-surface-600 text-surface-100">
+            <span className="text-sm font-medium">View Details</span>
+          </div>
         </div>
       </div>
 
@@ -92,26 +82,9 @@ function ProjectCard({ project, index, isInView }) {
           {project.description}
         </p>
 
-        {/* Expandable details */}
-        <AnimatePresence>
-          {isExpanded && (
-            <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="overflow-hidden"
-            >
-              <p className="text-surface-400 text-sm leading-relaxed mb-4 border-t border-surface-700/50 pt-4">
-                {project.longDescription}
-              </p>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
         {/* Tags */}
         <div className="flex flex-wrap gap-2 mb-4">
-          {project.tags.map((tag) => (
+          {project.tags.slice(0, 4).map((tag) => (
             <span
               key={tag}
               className="px-2.5 py-1 text-xs font-mono font-medium rounded-md bg-surface-800/60 text-surface-400 border border-surface-700/50"
@@ -119,27 +92,38 @@ function ProjectCard({ project, index, isInView }) {
               {tag}
             </span>
           ))}
+          {project.tags.length > 4 && (
+            <span className="px-2.5 py-1 text-xs font-mono font-medium rounded-md bg-surface-800/60 text-surface-500 border border-surface-700/50">
+              +{project.tags.length - 4}
+            </span>
+          )}
         </div>
 
-        {/* Actions */}
+        {/* Footer links */}
         <div className="flex items-center justify-between pt-3 border-t border-surface-700/30">
-          <button
-            onClick={() => setIsExpanded(!isExpanded)}
-            className="text-sm text-surface-500 hover:text-accent-400 transition-colors flex items-center gap-1"
-          >
-            {isExpanded ? "Show less" : "Read more"}
-            {isExpanded ? <HiChevronUp className="w-4 h-4" /> : <HiChevronDown className="w-4 h-4" />}
-          </button>
-
           <a
             href={project.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm font-medium text-accent-400 hover:text-accent-300 transition-colors flex items-center gap-1 group/link"
+            className="text-sm text-surface-500 hover:text-accent-400 transition-colors flex items-center gap-1.5"
+            onClick={(e) => e.stopPropagation()}
           >
-            View Code
-            <HiArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
+            <FaGithub className="w-4 h-4" />
+            Source
           </a>
+
+          {project.live && (
+            <a
+              href={project.live}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-surface-500 hover:text-accent-400 transition-colors flex items-center gap-1.5"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <FaExternalLinkAlt className="w-3.5 h-3.5" />
+              Live
+            </a>
+          )}
         </div>
       </div>
     </motion.div>
@@ -150,6 +134,7 @@ export default function Projects() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [filter, setFilter] = useState("all");
+  const [selectedProject, setSelectedProject] = useState(null);
 
   const filteredProjects =
     filter === "featured" ? projects.filter((p) => p.featured) : projects;
@@ -205,11 +190,22 @@ export default function Projects() {
                 project={project}
                 index={i}
                 isInView={isInView}
+                onClick={setSelectedProject}
               />
             ))}
           </AnimatePresence>
         </div>
       </div>
+
+      {/* Project detail modal */}
+      <AnimatePresence>
+        {selectedProject && (
+          <ProjectModal
+            project={selectedProject}
+            onClose={() => setSelectedProject(null)}
+          />
+        )}
+      </AnimatePresence>
     </section>
   );
 }
