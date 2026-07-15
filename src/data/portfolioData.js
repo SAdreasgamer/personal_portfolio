@@ -10,7 +10,7 @@ export const personalInfo = {
   email: "onlyshrey98@gmail.com",
   location: "India",
   resumeUrl: "#",                              // 👈 Replace with your resume PDF link
-  avatarUrl: "https://avatars.githubusercontent.com/u/173816053?v=4",
+  avatarUrl: "/personal_portfolio/profilepic.png",
 };
 
 // ------- SOCIAL LINKS -------

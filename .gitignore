@@ -24,6 +24,7 @@ dist-ssr
 *.sw?
 
 # Raw media assets (originals kept locally)
-image.png
-medsync_demo.mov
+/image.png
+/medsync_demo.mov
 *.mov
+/profilepic.PNG
