@@ -7,7 +7,7 @@ export const personalInfo = {
   name: "Shrey Anand",
   title: "Backend & Systems Engineer",
   tagline: "Building distributed systems, AI-powered platforms, and developer tooling that ships to production.",
-  email: "shreyanand@example.com",            // 👈 Replace with your real email if different
+  email: "onlyshrey98@gmail.com",
   location: "India",
   resumeUrl: "#",                              // 👈 Replace with your resume PDF link
   avatarUrl: "https://avatars.githubusercontent.com/u/173816053?v=4",
