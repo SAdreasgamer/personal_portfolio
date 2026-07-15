@@ -35,9 +35,9 @@ export default function About() {
           >
             <div className="glass-card rounded-2xl p-8">
               {/* Avatar or initial */}
-              <div className="w-28 h-28 mx-auto mb-6 rounded-2xl bg-surface-800 border border-surface-700 flex items-center justify-center text-4xl font-bold text-surface-100 shadow-md">
+              <div className="w-44 h-44 mx-auto mb-6 rounded-full bg-surface-800 border border-surface-700 flex items-center justify-center text-5xl font-bold text-surface-100 shadow-md overflow-hidden">
                 {personalInfo.avatarUrl ? (
-                  <img src={personalInfo.avatarUrl} alt={personalInfo.name} className="w-full h-full object-cover rounded-2xl" />
+                  <img src={personalInfo.avatarUrl} alt={personalInfo.name} className="w-full h-full object-cover rounded-full" />
                 ) : (
                   personalInfo.name.split(" ").map((n) => n.charAt(0)).join("")
                 )}
